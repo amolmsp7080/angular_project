@@ -1,0 +1,18 @@
+<p>employee-table works!</p>
+<table class="table table-bordered">
+  <tbody>
+    @for (emp of employees; track $index) {
+      <tr>
+        <td>{{emp.id}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.role}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.status}}</td>
+        <td>{{emp.gender}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteEmp(emp.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

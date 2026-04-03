@@ -1,0 +1,176 @@
+<h3 class="text-center">Let's Learn Directives</h3>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>ngIf Before Angular-17</div>
+  <div><input type="number" [(ngModel)]="num"></div>
+  <div *ngIf="num%2==0; else oddBlock">
+    {{num}} is Even
+  </div>
+  <ng-template #oddBlock>{{num}} is Odd</ng-template>
+  <hr />
+  <div>If-Else After Angular-17</div>
+  @if(num%2==0){
+  <div>{{num}} is Even</div>
+  }@else {
+  <div>{{num}} is Odd</div>
+  }
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>If vs hidden</div>
+  <pre>
+    -when if condition is false, the element will neither be displayed on the page/screen nor it will be there in the DOM.
+    -when [hidden] condition is true, the element will not be displayed on the page/screen(display:none) but it will be there in the DOM.
+  </pre>
+  @if(num%2==0){
+  <div>{{num}} is Even</div>
+  }@else {
+  <div>{{num}} is Odd</div>
+  }
+  <div [hidden]="num%2!==0">{{num}} is Even</div>
+  <div [hidden]="num%2===0">{{num}} is Odd</div>
+
+  <select [hidden]="num%2==0">
+    @for (state of statesArr; track $index) {
+    <option>{{state}}</option>
+    }
+  </select>
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>Switch Case:</div>
+  @switch (num) {
+  @case (1) { <h1>Monday</h1> }
+  @case (2) { <h1>Tuesday</h1> }
+  @case (3) { <h1>Wednesday</h1> }
+  @case (4) { <h1>Thursday</h1> }
+  @case (5) { <h1>Friday</h1> }
+  @case (6) { <h1>Saturday</h1> }
+  @case (7) { <h1>Sunday</h1> }
+  @default { <h1>Not a Valid number</h1> }
+  }
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>States List using For Loop/Directive</div>
+  <ul>
+    @for (state of statesArr; track $index) {
+    <li [style.color]="$even?'red':'green'">{{state}}</li>
+    }@empty {
+    no data available
+    }
+  </ul>
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>States dropdown using For Loop/Directive</div>
+  <select [(ngModel)]="selectedState">
+    @for (state of statesArr; track $index) {
+    <option>{{state}}</option>
+    }
+  </select>
+  <div> selectedState: {{selectedState}} </div>
+</div>
+
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>Employee Table::</div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        @for (column of columnArr; track $index) {
+        <th>{{column}}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track emp.eId) {
+      <tr>
+        <td>{{emp.eId}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.sal}}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>Employee Table::</div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Sl No.</th>
+        <th>emp Id</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Salary</th>
+        <th>is First Row?</th>
+        <th>is Last Row?</th>
+        <th>is Even Row?</th>
+        <th>is Odd Row?</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track $index) {
+      <tr>
+        <td>{{$index+1}}</td>
+        <td>{{emp.eId}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.sal}}</td>
+        <td>{{$first}}</td>
+        <td>{{$last}}</td>
+        <td>{{$even}}</td>
+        <td>{{$odd}}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>ngClass is used to apply css classes conditionally/dynamically</div>
+  <div><input type="number" [(ngModel)]="num"></div>
+  <span [ngClass]="{'pending':status=='pending','approved':status=='approved','rejected':status=='rejected'}">
+    {{status}}</span>
+
+  <button [ngClass]="['btn','mx-2',num%2==0?'btn-success':'btn-danger']">Click Me</button>
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>ngStyle is used to apply some style conditionally</div>
+  <p [style.color]="num % 2 == 0 ? 'blue' : 'red'"> Add a style </p>
+  <p [style.fontSize.px]='num % 2 == 0 ? 24 : 36'> Add style with unit </p>
+  <p [style.background-color]=" num % 2 == 0?'green':'blue' "> Add style conditionally </p>
+  <p [ngStyle]="num % 2 == 0 ? myStyle1 : myStyle2"> NgStyle for multiple values </p>
+  <p [ngStyle]="myFunction()"> NgStyle for multiple values </p>
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <p>Content Projection Allows a component to receive and display content from its parent component using ng-content</p>
+
+  <app-my-modal>
+    <!-- <h2 modal-title>This is Modal Title From Parent</h2> -->
+    <div class="myTitle">Angular Image</div>
+    <img src="https://web.dev/static/explore/angular/cover-wide.svg" alt="">
+  </app-my-modal>
+  <!-- <app-my-modal>
+    <form action="/action_page.php">
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" id="email">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </app-my-modal> -->
+</div>

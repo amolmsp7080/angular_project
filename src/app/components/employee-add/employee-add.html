@@ -1,0 +1,20 @@
+<p>employee-add works!</p>
+
+<div class="border border-3 rounded-3 p-3">
+  <div>id: <input type="number" [(ngModel)]="newEmp.id"></div>
+  <div>name: <input type="text" [(ngModel)]="newEmp.name"></div>
+  <div>Role: <input type="text" [(ngModel)]="newEmp.role"></div>
+  <div>salary: <input type="number" [(ngModel)]="newEmp.salary"></div>
+  <div>status: <input type="text" [(ngModel)]="newEmp.status"></div>
+  <div>
+    gender:
+    <select [(ngModel)]="newEmp.gender">
+      <option>male</option>
+      <option>female</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary" (click)="addEmp()">Add Emp</button>
+</div>
+
+<pre> {{newEmp|json}}</pre>

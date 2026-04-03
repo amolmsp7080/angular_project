@@ -1,0 +1,18 @@
+<h3 class="text-center">Employee List Using Model</h3>
+
+<table class="table table-bordered">
+  <tbody>
+    @for (emp of employeeArr(); track $index) {
+      <tr>
+        <td>{{emp.id}}</td>
+        <td>{{emp.firstName}}</td>
+        <td>{{emp.lastName}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.sal}}</td>
+        <td>{{emp.getFullName()}}</td>
+        <td>{{emp.getAnnualSal()}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

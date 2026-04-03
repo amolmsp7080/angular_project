@@ -1,0 +1,24 @@
+<h3 class="text-center">Product List</h3>
+
+<button class="btn btn-primary" (click)="fetchProducts()">Fetch Data</button>
+
+@if(isLoading()){
+<h1>Loading...</h1>
+}@else{
+<div class="container">
+  <div class="row">
+    @for (product of productArr(); track $index) {
+    <div class="col-sm-3 card">
+      <img src="{{product.image}}" class="card-img-top" alt="..." style="height: 150px;">
+      <div class="card-body text-center" appZoomin>
+        <h5 class="card-title">{{product.category}}</h5>
+        <p class="card-text text-truncate">{{product.title}}</p>
+        <p class="card-text text-truncate">{{product.description}}</p>
+        <p class="card-text">{{product.price | currency}}</p>
+        <button (click)="addToCart(product)">Add To Cart</button>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}

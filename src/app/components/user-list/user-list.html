@@ -1,0 +1,19 @@
+<h3 class="text-center">User List</h3>
+
+<div class="container">
+  <div class="row">
+    @for (user of userData | async; track $index) {
+    <div class="card col-sm-3">
+      <img src="https://imgproxy.attic.sh/insecure/f:webp/q:90/w:1920/plain/https://attic.sh/5euu0abzcpy41b5oizfjgho6kem2" class="card-img-top" alt="..." style="height: 150px;">
+      <div class="card-body text-center" appZoomin>
+        <h5 class="card-title">{{user.username}}</h5>
+        <p class="card-text text-truncate">{{user.name}}</p>
+        <p class="card-text text-truncate">{{user.email}}</p>
+        <p class="card-text">{{user.phone}}</p>
+        <p class="card-text">{{user.address.city}}</p>
+        <a class="btn btn-primary" [routerLink]="['/userdetails',user.id]">Details</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

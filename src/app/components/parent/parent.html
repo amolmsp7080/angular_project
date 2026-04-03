@@ -1,0 +1,31 @@
+<div class="row text-center border border-2 p-2 mt-2">
+  <div>I am Parent Component</div>
+  <div>
+    My own data a: {{a}}
+    <div><input type="number" [(ngModel)]="a"></div>
+  </div>
+  <div>
+    My own data mySal: {{mySal}}
+    <div><input type="number" [(ngModel)]="mySal"></div>
+  </div>
+  <div>My child2 data b:{{child2.b}}</div>
+  <div>My child2 data c:{{child2.c}}</div>
+  <div>Cars: {{carsParent}}</div>
+
+  <div>{{employee.name}} Has Below {{employee.skills.length}} Skills: </div>
+  @for (skill of employee.skills; track $index) {
+  <b>{{skill}} , &nbsp;</b>
+  }
+
+  <button (click)="employee.skills.push('Java')">add skill</button>
+
+  <div class="col-sm-6 border border-2 p-2">
+    <app-child1 [a]="a" [b]="child2.b" (carsEvent)="receiveCarsData($event)" [employee]="employee"></app-child1>
+  </div>
+  <div class="col-sm-6 border border-2 p-2">
+    <app-child2 [aChild2]="a" #child2 [cars]="carsParent">
+        <h4>Hello This Content is From Parent Component</h4>
+        <input type="text" #inputBoxFromParent />
+    </app-child2>
+  </div>
+</div>

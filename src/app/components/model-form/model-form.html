@@ -1,0 +1,32 @@
+<h3 class="text-center">Let's Learn Template Form</h3>
+
+<div class="border border-3 rounded-3 p-3 mt-3 offset-3 col-sm-5">
+  <form [formGroup]="signupForm" (submit)="submitMyForm()">
+    <p>
+      FirstName:
+      <input formControlName="firstName">
+      @if (signupForm['controls']['firstName'].hasError('required')) {
+      <span class="text-danger">FirstName is Required</span>
+      }
+      @if (signupForm['controls']['firstName'].hasError('minlength')) {
+      <span class="text-danger">FirstName should have minimum 5 chars</span>
+      }
+    </p>
+    <p>lastName: <input formControlName="lastName"></p>
+    <p>email: <input formControlName="email"></p>
+
+    <div formGroupName="address">
+      <p>city: <input formControlName="city"></p>
+      <p>state: <input formControlName="state"></p>
+      <p>pincode: <input formControlName="pincode"></p>
+    </div>
+
+    <input type="reset" value="Reset">
+    <input type="submit" value="Submit">
+  </form>
+
+  <button class="btn btn-primary" (click)="setFormValue()">Set value</button>
+  <button class="btn btn-primary mx-2" (click)="patchFormValue()">Patch value</button>
+
+  <pre>{{ signupForm.value | json }}</pre>
+</div>

@@ -1,0 +1,57 @@
+<h3 class="text-center">Directive Assignments::</h3>
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <div>Assignment-1:: Task List</div>
+
+  <div>
+    <select [(ngModel)]="filter">
+      <option>all</option>
+      <option>completed</option>
+      <option>pending</option>
+    </select>
+
+    @for (task of filterTasksData(); track $index) {
+    <div>
+      <input type="checkbox" [(ngModel)]="task.completed">
+      <span [ngClass]="task.completed ? 'text-decoration-line-through' : '' ">
+        {{task.title}} ===== {{task.completed}}
+      </span>
+    </div>
+    }@empty {
+    <div>Nothing TO display</div>
+    }
+
+    <div>{{completedCount()}} Tasks are completed out of {{tasks.length}} Tasks</div>
+  </div>
+</div>
+
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <div>Assignment-3:: Cart List</div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>price</th>
+        <th>quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (cart of cartItems; track $index) {
+      <tr>
+        <td>{{cart.name}}</td>
+        <td>{{cart.price}}</td>
+        <td>
+          <button (click)="decreaseQty(cart)">-</button>
+          {{cart.qty}}
+          <button (click)="increaseQty(cart)">+</button>
+        </td>
+        <td>{{cart.price * cart.qty}}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <h3 class="text-end">Total Cart Value: {{getTotalPrice()}}</h3>
+</div>

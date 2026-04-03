@@ -1,0 +1,144 @@
+<h3 class="text-center">Let's learn Angular Pipes</h3>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>uppercase, lowercase, titlecase Pipes::</div>
+  <div> {{userName}} </div>
+  <div> {{userName | uppercase}} </div>
+  <div> {{userName | lowercase}} </div>
+  <div> {{userName | titlecase}} </div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Currency Pipe::</div>
+  <div>{{ salary }}</div>
+  <div>{{ salary | currency }}</div>
+  <div>{{ salary | currency : 'USD' }}</div>
+  <div>{{ salary | currency : 'INR' }}</div>
+  <div>{{ salary | currency : '&euro;' }}</div>
+  <div>{{ salary | currency : '&yen;' }}</div>
+  <div>{{ salary | currency : 'USD' : 'code' }}</div>
+  <div>{{ salary | currency : 'USD' : 'symbol' }}</div>
+  <!-- input | pipeName : argument1 : argument2 -->
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Date Pipe::</div>
+  <div> {{ dateObj }}</div>
+  <div>{{ dateObj | date }}</div>
+  <div>{{ dateObj | date :'short'}}</div> <!-- Short Date + Short Time -->
+  <div>{{ dateObj | date :'medium'}}</div> <!-- medium Date + medium Time -->
+  <div>{{ dateObj | date :'long'}}</div> <!-- long Date + long Time -->
+  <div>{{ dateObj | date :'full'}}</div> <!-- full Date + full Time -->
+  ==================
+  <div>{{ dateObj | date : 'shortDate' }}</div>
+  <div>{{ dateObj | date : 'mediumDate' }}</div>
+  <div>{{ dateObj | date : 'longDate' }}</div>
+  <div>{{ dateObj | date : 'fullDate' }}</div>
+  =================
+  <div>{{ dateObj | date : 'shortTime' }}</div>
+  <div>{{ dateObj | date : 'mediumTime' }}</div>
+  <div>{{ dateObj | date : 'longTime' }}</div>
+  <div>{{ dateObj | date : 'fullTime' }}</div>
+  ==============
+  <div>{{ dateObj | date : 'dd-MMMM-yyyy' }}</div>
+  <div>{{ dateObj | date : 'hh:mm:ss a' }}</div>
+  <div>{{ dateObj | date: "fullTime":"UTC" }}</div>
+  <div>{{ dateObj | date: "fullTime":"IST" }}</div>
+  <div>{{ dateObj | date: "EEEE" }}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>number & percent pipe::</div>
+  <div> {{100000000 | number}} </div>
+  <div> {{100000000 | number:'1.0-0' : 'en-IN'}} </div>
+  <div>{{ 12.111222333 | number: "3.2-5" }}</div>
+  <div>{{ 12.1 | number: "3.2-5" }}</div>
+  <div>{{ 0.5 | number:'3.2-5'}}</div>
+
+  <div>{{ 0.5 | percent}}</div>
+  <div>{{ 0.05 | percent}}</div>
+  <div>{{ 0.25 | percent}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>json pipe::</div>
+  <div>{{user.name}} is {{user.age}} years old, he is from {{user.add}}</div>
+  <div>{{user}}</div>
+  <div>{{user | json}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>keyvalue pipe::</div>
+  @for (entry of user | keyvalue; track $index) {
+  <div>{{entry.key}} -- {{entry.value}}</div>
+  }
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>slice pipe can be used with array and string</div>
+  <div>{{cars | slice : 2 : 4}}</div>
+  <div>{{'Angular is a Framework' | slice : 0 : 7}}</div>
+  <div>{{'Angular is a Framework' | slice : 0 : -4}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Custom Pipe(remaining)::</div>
+  <textarea [(ngModel)]="msg"></textarea>
+  <div>Remaining: {{msg | remaining}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Custom Pipe(ordinal)::</div>
+  <input [(ngModel)]="num" type="number" />
+  <div>Ordinal value: {{num | ordinal}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Custom Pipe(Roman)::</div>
+  <input [(ngModel)]="num" type="number" />
+  <div>Roman value: {{num | roman}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Custom Pipe(credit card)::</div>
+  <input [(ngModel)]="cardNumber" />
+  <div>cardNumber: {{cardNumber | creditcard}}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Custom Pipe(Age)::</div>
+  <input type='date' [(ngModel)]="dob" />
+  <div>Age is : {{dob | age}}</div>
+</div>
+
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>Employee Table::</div>
+  <input type="search" [(ngModel)]="searchText" class="form-control col-sm-2 m-2" placeholder="Search..." />
+
+  <table class="table table-bordered">
+    <tbody>
+      @for (emp of employees | filter:searchText; track emp.id) {
+      <tr>
+        <td>{{emp.id}}</td>
+        <td>{{emp.name | salutation : emp.gender}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.status}}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="border border-2 rounded-2 m-2 p-2">
+  <div>Need of Impure Pipe:</div>
+  @for (item of numArr | mySort; track $index) {
+    <b>{{item}} , &nbsp;</b>
+  }
+
+  <div>
+    <input type="number" #newNum class="mx-2" />
+    <button (click)="numArr.push(+newNum.value)">Add</button>
+  </div>
+</div>

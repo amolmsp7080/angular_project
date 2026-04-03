@@ -1,0 +1,8 @@
+<div class="row border border2 rounded-2 p-2 m-2">
+  <div class="col-sm-9">
+    <app-employee-table [employees]="employees" (deleteEmpEvent)="deleteEmployee($event)"></app-employee-table>
+  </div>
+  <div class="col-sm-3">
+    <app-employee-add (addEmpEvent)="addEmployee($event)"></app-employee-add>
+  </div>
+</div>

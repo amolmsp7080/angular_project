@@ -1,0 +1,14 @@
+<h3 class="text-center">Cart Items ({{cartItems.length}})</h3>
+
+<table class="table table-bordered">
+  <tbody>
+    @for (item of cartItems ; track $index) {
+    <tr>
+      <td>{{item.title}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.rating.rate}}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+<h3 class="text-end">Total Price: {{totalPrice}}</h3>
