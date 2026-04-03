@@ -56,9 +56,9 @@ import { RouterOutlet } from '@angular/router';
     // SignalDemo2
     // FormDemo1
     // TemplateFormDemo1
-    // SignalFormDemo1
+     SignalFormDemo1
     // ModelForm
-    DynamicForm
+   // DynamicForm
   ],
   templateUrl: './body.html',
   styleUrl: './body.css',
